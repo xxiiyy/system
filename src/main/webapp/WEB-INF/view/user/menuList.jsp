@@ -23,32 +23,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#sidebar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span>BOLG</span>SYSTEM</a>
-            <ul class="user-menu">
-                <li class="dropdown pull-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> ${user.nickName} <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                        <li><a href="/blogSystem/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div><!-- /.container-fluid -->
-</nav>
+<jsp:include page="../top.jsp"/>
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
     <form role="search">
         <div class="form-group">
@@ -58,7 +33,6 @@
     <ul class="nav menu">
         <jsp:include page="../menu.jsp"/>
         <li role="presentation" class="divider"></li>
-        <li><a href="login"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
     </ul>
     <div class="attribution">Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a>
     </div>
@@ -86,31 +60,33 @@
                 <div class="panel-body">
                     <table data-toggle="table" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
-                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name"
-                           data-sort-order="desc">
+                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="status"
+                           data-sort-order="asc">
                         <thead>
                         <tr>
-                            <th data-field="status" data-sortable="true">No</th>
-                            <th data-field="nickname" data-sortable="true">Nick Name</th>
-                            <th data-field="sex" data-sortable="true">Sex</th>
-                            <th data-field="name" data-sortable="true">Login Name</th>
-                            <th data-field="role" data-sortable="true">Role Type</th>
+                            <th data-field="status" data-sortable="true">no</th>
+                            <th data-field="id" data-sortable="true">menu id</th>
+                            <th data-field="pid" data-sortable="true">menu pid</th>
+                            <th data-field="name" data-sortable="true">menu name</th>
+                            <th data-field="href" data-sortable="true">menu href</th>
+                            <th data-field="icon" data-sortable="true">menu icon</th>
                             <th data-field="operate" data-sortable="true">operate</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="user" varStatus="status" items="${userList}">
+                        <c:forEach var="menu" varStatus="status" items="${menuList}">
 
                             <tr>
                                 <td data-field="status" data-sortable="true">${status.index+1}</td>
-                                <td data-field="nickName" data-sortable="true">${user.nickName}</td>
-                                <td data-field="id" data-sortable="true">${user.sex==true?"male":"female"}</td>
-                                <td data-field="name" data-sortable="true">${user.loginName}</td>
-                                <td data-field="price" data-sortable="true">${user.roleType}</td>
+                                <td data-field="nickName" data-sortable="true">${menu.id}</td>
+                                <td data-field="id" data-sortable="true">${menu.pid}</td>
+                                <td data-field="name" data-sortable="true">${menu.name}</td>
+                                <td data-field="price" data-sortable="true">${menu.href}</td>
+                                <td data-field="price" data-sortable="true">${menu.icon}</td>
                                 <td data-field="operate" data-sortable="true">
-                                    <a href="login"><span class="glyphicon glyphicon-pencil">修改</span></a>
-                                    <a href="javascript:void(0);" data-id="${user.id}" id="deleteUser">
-                                        <span class="glyphicon glyphicon-trash">删除</span>
+                                    <a href="javascript:void(0);" date-uid="${user.id}"><span class="glyphicon glyphicon-pencil">&nbsp;修改&nbsp;&nbsp;</span></a>
+                                    <a href="javascript:void(0);" data-did="${user.id}">
+                                        <span class="glyphicon glyphicon-trash">&nbsp;删除</span>
                                     </a>
                                 </td>
                             </tr>

@@ -21,7 +21,7 @@
     <select id="queryAllRole"  resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/>
         from b_role
-        where is_user = 1;
+        where is_use = 1;
     </select>
 
     <select id="queryRoleIdByRoleType" resultType="int" parameterType="string">

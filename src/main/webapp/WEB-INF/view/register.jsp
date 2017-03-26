@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <div class="col-md-6">
                         <label for="first_name" class="control-label">nickname</label>
-                        <input type="text" class="form-control" name="nickName" id="first_name" placeholder="">
+                        <input type="text" required class="form-control" name="nickName" id="first_name" placeholder="">
                     </div>
                     <div class="col-md-6 templatemo-radio-group">
                         <label class="radio-inline">
@@ -35,14 +35,14 @@
                 <div class="form-group">
                     <div class="col-md-6">
                         <label for="username" class="control-label">username</label>
-                        <input type="text" name="loginName" class="form-control" id="username" placeholder="">
+                        <input type="text" required name="loginName" class="form-control" id="username" placeholder="">
                     </div>
 
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
                         <label for="password" class="control-label">password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="">
+                        <input type="password" required name="password" class="form-control" id="password" placeholder="">
                     </div>
 
                 </div>

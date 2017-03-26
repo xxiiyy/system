@@ -17,5 +17,10 @@ public interface UserService {
     
     public int insertUser(User user);
 
+    public int updateUserByLoginName(User user);
+
+    public int deleteUserByLoginName(String loginName);
+
+
 
 }

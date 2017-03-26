@@ -30,4 +30,12 @@ public class UserServiceImpl implements UserService{
     public int insertUser(User user) {
         return userMapper.insertUser(user);
     }
+
+    public int updateUserByLoginName(User user) {
+        return userMapper.updateUserByLoginName(user);
+    }
+
+    public int deleteUserByLoginName(String loginName) {
+        return userMapper.deleteUserByLoginName(loginName);
+    }
 }

@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
  * @author sniper
  *
  */
-public class EncryptUtil {
+public class EncryptUtils {
 
     /**
      * 加密

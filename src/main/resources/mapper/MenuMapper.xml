@@ -16,7 +16,7 @@
 
     <!-- sql片段 -->
     <sql id="Base_Column_List" >
-        id,pid,name,href,icon,create_time,is_show
+        menu_id,pid,name,href,icon,create_time,is_show
     </sql>
 
     <!-- 查询全部的menu -->

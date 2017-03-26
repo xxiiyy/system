@@ -20,7 +20,7 @@
 				<div class="col-xs-12">
 					<div class="control-wrapper">
 						<label for="username" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
-						<input type="text" class="form-control" name="username" id="username" placeholder="Username">
+						<input type="text" required class="form-control" name="username" id="username" placeholder="Username">
 					</div>
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 				<div class="col-md-12">
 					<div class="control-wrapper">
 						<label for="password" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
-						<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+						<input type="password" required class="form-control" name="password" id="password" placeholder="Password">
 					</div>
 				</div>
 			</div>

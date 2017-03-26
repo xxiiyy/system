@@ -51,7 +51,11 @@ public class Test {
         System.out.println(pMenus);
     }
 
-
+    @org.junit.Test
+    public void test1(){
+        User user = userService.queryUserByLoginName("root");
+        System.out.println(user);
+    }
 
 
 

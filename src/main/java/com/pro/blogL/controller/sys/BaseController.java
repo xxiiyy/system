@@ -5,7 +5,7 @@ import com.pro.blogL.entrty.User;
 import com.pro.blogL.service.Impl.MenuServiceImpl;
 import com.pro.blogL.service.Impl.RoleServiceImpl;
 import com.pro.blogL.service.Impl.UserServiceImpl;
-import com.pro.blogL.util.EncryptUtil;
+import com.pro.blogL.util.EncryptUtils;
 import com.pro.blogL.util.MenuUtils;
 import com.pro.blogL.util.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -59,10 +59,8 @@ public class BaseController {
      */
     @RequestMapping(value = "/")
     public String base(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("menus",getMenus(user.getLoginName()));
-        model.addAttribute("user", user);
+        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
+        model.addAttribute("user", getNowUser());
         return "index";
     }
 
@@ -86,9 +84,7 @@ public class BaseController {
                 model.addAttribute("errorMsg", "未知异常");
             }
         }
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
+        model.addAttribute("user",getNowUser());
         return "login";
     }
 
@@ -98,9 +94,7 @@ public class BaseController {
      */
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String register(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
+        model.addAttribute("user",getNowUser());
         return "register";
     }
 
@@ -110,9 +104,7 @@ public class BaseController {
      */
     @RequestMapping(value = "/forgot",method = RequestMethod.GET)
     public String forgot(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
+        model.addAttribute("user",getNowUser());
         return "forgot";
     }
 
@@ -122,9 +114,7 @@ public class BaseController {
      */
     @RequestMapping(value = "/logout",method = {RequestMethod.GET,RequestMethod.POST})
     public String logout(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
+        model.addAttribute("user",getNowUser());
         return "login";
     }
 
@@ -135,17 +125,21 @@ public class BaseController {
      */
     @RequestMapping(value = "/registerMethod")
     public String registerMethod(Model model, User user){
-        Subject subject = SecurityUtils.getSubject();
-        User user1 = (User) subject.getPrincipal();
-        model.addAttribute("user",user1);
+
+        model.addAttribute("user",getNowUser());
+        user = insert(user);
+        userService.insertUser(user);
+        return "login";
+    }
+
+    public User insert(User user){
         user.setCreateTime(new Date());
         user.setId(StringUtils.getUUID());
         user.setRoleType("customer");
         user.setSalt(StringUtils.getUUID());
-        String passwordSalt = EncryptUtil.md5(user.getPassword(),user.getSalt());
+        String passwordSalt = EncryptUtils.md5(user.getPassword(),user.getSalt());
         user.setPassword(passwordSalt);
-        userService.insertUser(user);
-        return "login";
+        return user;
     }
 
     /**
@@ -154,10 +148,8 @@ public class BaseController {
      */
     @RequestMapping(value = "/index")
     public String index(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
-        model.addAttribute("menus",getMenus(user.getLoginName()));
+        model.addAttribute("user",getNowUser());
+        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "index";
     }
 
@@ -168,10 +160,8 @@ public class BaseController {
      */
     @RequestMapping(value = "tables")
     public String tables(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
-        model.addAttribute("menus",getMenus(user.getLoginName()));
+        model.addAttribute("user",getNowUser());
+        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "tables";
     }
 
@@ -182,10 +172,8 @@ public class BaseController {
      */
     @RequestMapping(value = "charts")
     public String charts(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
-        model.addAttribute("menus",getMenus(user.getLoginName()));
+        model.addAttribute("user",getNowUser());
+        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "charts";
     }
 
@@ -196,10 +184,8 @@ public class BaseController {
      */
     @RequestMapping(value = "forms")
     public String forms(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
-        model.addAttribute("menus",getMenus(user.getLoginName()));
+        model.addAttribute("user",getNowUser());
+        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "forms";
     }
 
@@ -210,10 +196,8 @@ public class BaseController {
      */
     @RequestMapping(value = "panels")
     public String panels(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
-        model.addAttribute("menus",getMenus(user.getLoginName()));
+        model.addAttribute("user",getNowUser());
+        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "panels";
     }
     /**
@@ -223,10 +207,8 @@ public class BaseController {
      */
     @RequestMapping(value = "widgets")
     public String widgets(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        model.addAttribute("user",user);
-        model.addAttribute("menus",getMenus(user.getLoginName()));
+        model.addAttribute("user",getNowUser());
+        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "widgets";
     }
 
@@ -250,5 +232,9 @@ public class BaseController {
         return pMenus;
     }
 
-
+    public User getNowUser(){
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getPrincipal();
+        return user;
+    }
 }

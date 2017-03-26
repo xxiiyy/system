@@ -33,4 +33,19 @@ public interface UserMapper {
      */
     public int insertUser(User user);
 
+    /**
+     * 使用登陆用户名更新用户
+     * @param user
+     * @return
+     */
+    public int updateUserByLoginName(User user);
+
+    /**
+     * 根据loginName删除user
+     * @param loginName
+     * @return
+     */
+    public int deleteUserByLoginName(@Param("loginName") String loginName);
+
+
 }
