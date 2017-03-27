@@ -127,15 +127,15 @@ public class BaseController {
     public String registerMethod(Model model, User user){
 
         model.addAttribute("user",getNowUser());
-        user = insert(user);
+        user = insert(user,"customer");
         userService.insertUser(user);
         return "login";
     }
 
-    public User insert(User user){
+    public User insert(User user,String roleType){
         user.setCreateTime(new Date());
         user.setId(StringUtils.getUUID());
-        user.setRoleType("customer");
+        user.setRoleType(roleType);
         user.setSalt(StringUtils.getUUID());
         String passwordSalt = EncryptUtils.md5(user.getPassword(),user.getSalt());
         user.setPassword(passwordSalt);

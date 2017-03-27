@@ -19,6 +19,6 @@
     </bean>
 	
 	<!--配置基于注解的声明式事务,默认使用注解来管理事务行为-->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	
 </beans>

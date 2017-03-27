@@ -83,7 +83,7 @@ public class UserController extends BaseController{
 
     @RequestMapping(value = "/addUser")
     public String addUser(Model model,User user){
-        user = insert(user);
+        user = insert(user,user.getRoleType());
         userService.insertUser(user);
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("startNo",0);

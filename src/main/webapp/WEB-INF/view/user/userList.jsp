@@ -86,7 +86,7 @@
                                        data-target="#myModal" data-uid="${user.loginName}">
                                         <span class="glyphicon glyphicon-pencil">&nbsp;修改&nbsp;&nbsp;</span>
                                     </a>
-                                    <a href="deleteUser/${user.loginName}" class="deleteUser" data-did="${user.id}">
+                                    <a href="/blogSystem/user/deleteUser/${user.loginName}" class="deleteUser" data-did="${user.id}">
                                         <span class="glyphicon glyphicon-trash">&nbsp;删除</span>
                                     </a>
                                 </td>
@@ -98,74 +98,73 @@
             </div>
         </div>
     </div><!--/.row-->
-    <!-- 按钮触发模态框 -->
-
-    <!-- 模态框（Modal） -->
-    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel1">
-                        add user
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" role="form" action="addUser">
-                        <div class="form-group">
-                            <label for="loginName" class="col-sm-3 control-label">login name</label>
-                            <div class="col-sm-8">
-                                <input type="text" required class="form-control" name="loginName">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="col-sm-3 control-label">password</label>
-                            <div class="col-sm-8">
-                                <input type="password" required class="form-control" name="password" id="password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nickName" class="col-sm-3 control-label">nick name</label>
-                            <div class="col-sm-8">
-                                <input type="text" required class="form-control" name="nickName"
-                                       placeholder="请输入名字">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="sex" class="col-sm-3 control-label">sex</label>
-                            <div class="col-sm-8">
-                                <label>
-                                    <input type="radio" name="sex" value="1" checked> male&nbsp&nbsp
-                                </label>
-                                <label>
-                                    <input type="radio" name="sex" value="0">female
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="roleType" class="col-sm-3 control-label">role type</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="roleType">
-                                    <c:forEach var="role" items="${roleList}">
-                                        <option value="${role.roleType}">${role.roleName}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="submit" class="btn btn-primary">提交更改</button>
-                        </div>
-                    </form>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-
-
 </div><!--/.main-->
+
+<!-- 按钮触发模态框 -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">
+                    add user
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" action="/blogSystem/user/addUser">
+                    <div class="form-group">
+                        <label for="loginName" class="col-sm-3 control-label">login name</label>
+                        <div class="col-sm-8">
+                            <input type="text" required class="form-control" name="loginName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">password</label>
+                        <div class="col-sm-8">
+                            <input type="password" required class="form-control" name="password" id="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nickName" class="col-sm-3 control-label">nick name</label>
+                        <div class="col-sm-8">
+                            <input type="text" required class="form-control" name="nickName"
+                                   placeholder="请输入名字">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex" class="col-sm-3 control-label">sex</label>
+                        <div class="col-sm-8">
+                            <label>
+                                <input type="radio" name="sex" value="1" checked> male&nbsp&nbsp
+                            </label>
+                            <label>
+                                <input type="radio" name="sex" value="0">female
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="roleType" class="col-sm-3 control-label">role type</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="roleType">
+                                <c:forEach var="role" items="${roleList}">
+                                    <option value="${role.roleType}">${role.roleName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交更改</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -175,7 +174,7 @@
                 <h4 class="modal-title" id="myModalLabel">update user information</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" id="updateForm" action="updateSubmit">
+                <form class="form-horizontal" role="form" id="/blogSystem/user/updateForm" action="updateSubmit">
                     <div class="form-group">
                         <label for="loginName" class="col-sm-3 control-label">login name</label>
                         <div class="col-sm-8">
@@ -200,7 +199,6 @@
                                 <input type="radio" name="sex" id="sex1" value="0">female
                             </label>
                         </div>
-
                     </div>
                     <div class="form-group">
                         <label for="roleType" class="col-sm-3 control-label">role type</label>
@@ -218,11 +216,9 @@
                     </div>
                 </form>
             </div>
-
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
 <script src="/blogSystem/resources/js/jquery-1.11.1.min.js"></script>
 <script src="/blogSystem/resources/js/bootstrap.min.js"></script>
 <script src="/blogSystem/resources/js/chart.min.js"></script>
@@ -231,41 +227,7 @@
 <script src="/blogSystem/resources/js/easypiechart-data.js"></script>
 <script src="/blogSystem/resources/js/bootstrap-datepicker.js"></script>
 <script src="/blogSystem/resources/js/bootstrap-table.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".updateUser").click(function () {
-            var loginName = $(this).data('uid');
-            $("#loginName").val(loginName);
-            jQuery.ajax({
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                type: "POST",
-                url: "update/" + loginName,
-                //data : JSON.stringify(loginName),
-                success: function (reslut, tst, jqXHR) {
-                    $("#loginName").val(reslut.loginName);
-                    $("#nickName").val(reslut.nickName);
-                    if (reslut.sex == 1) {
-                        $("#sex").attr("checked", "checked");
-                    } else {
-                        $("#sex1").attr("checked", "checked");
-                    }
-                    $("#roleType").val(reslut.roleType);
-                    //$("#sex").val(reslut.sex);
-                }
-            });
-        })
-    })
-
-    /*$(document).ready(function () {
-     $("#submitUpdate").click(function () {
-     $("#updateForm").submit;
-     })
-     })*/
-
-</script>
+<script type="text/javascript"></script>
 <script>
     !function ($) {
         $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
@@ -282,5 +244,4 @@
     })
 </script>
 </body>
-
 </html>

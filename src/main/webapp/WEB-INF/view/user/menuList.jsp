@@ -79,7 +79,7 @@
                             <tr>
                                 <td data-field="status" data-sortable="true">${status.index+1}</td>
                                 <td data-field="nickName" data-sortable="true">${menu.id}</td>
-                                <td data-field="id" data-sortable="true">${menu.pid}</td>
+                                <td data-field="id" data-sortable="true">${menu.pId}</td>
                                 <td data-field="name" data-sortable="true">${menu.name}</td>
                                 <td data-field="price" data-sortable="true">${menu.href}</td>
                                 <td data-field="price" data-sortable="true">${menu.icon}</td>

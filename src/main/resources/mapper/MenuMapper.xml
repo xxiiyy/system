@@ -6,7 +6,17 @@
 
     <resultMap type="Menu" id="BaseResultMap">
         <id column="menu_id" property="id" jdbcType="INTEGER"/>
-        <result column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="pid" property="pId" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="href" property="href" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="is_show" property="show" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap type="com.pro.blogL.dto.MenuBar" id="BaseResultMap1">
+        <id column="menu_id" property="id" jdbcType="INTEGER"/>
+        <result column="pid" property="pId" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="href" property="href" jdbcType="VARCHAR"/>
         <result column="icon" property="icon" jdbcType="VARCHAR"/>
@@ -27,7 +37,7 @@
     </select>
 
     <!-- 查询全部的menuBar对象 -->
-    <select id="queryAllMenuBar"  resultMap="BaseResultMap">
+    <select id="queryAllMenuBar"  resultMap="BaseResultMap1">
         select <include refid="Base_Column_List"/>
         from b_menu
         where is_show = 1;

@@ -24,7 +24,6 @@ import java.util.Map;
 @RequestMapping(value = "menu")
 public class MenuController extends BaseController{
 
-
     @Resource
     private MenuServiceImpl menuService;
 

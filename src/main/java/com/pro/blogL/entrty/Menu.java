@@ -14,7 +14,7 @@ public class Menu {
 
     private int id;
 
-    private int pid;
+    private int pId;
 
     private String name;
 
@@ -44,12 +44,12 @@ public class Menu {
         this.id = id;
     }
 
-    public int getPid() {
-        return pid;
+    public int getpId() {
+        return pId;
     }
 
-    public void setPid(int pid) {
-        this.pid = pid;
+    public void setpId(int pId) {
+        this.pId = pId;
     }
 
     public String getName() {
@@ -97,7 +97,7 @@ public class Menu {
         return "Menu{" +
                 "childMenus=" + childMenus +
                 ", id=" + id +
-                ", pid=" + pid +
+                ", pId=" + pId +
                 ", name='" + name + '\'' +
                 ", href='" + href + '\'' +
                 ", icon='" + icon + '\'' +

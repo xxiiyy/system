@@ -19,7 +19,7 @@ public class MenuUtils {
     public static List<Menu> init(List<Menu> menus){
         List<Menu> pmenus = new ArrayList<Menu>();
         for (Menu menu:menus){
-            if(menu.getPid() == 0){
+            if(menu.getpId() == 0){
                 pmenus.add(menu);
             }
         }
@@ -37,7 +37,7 @@ public class MenuUtils {
         for (Menu pmenu : pmenus){
             List<Menu> list = new ArrayList<Menu>();
             for (Menu menu : menus){
-                if(pmenu.getId() == menu.getPid()){
+                if(pmenu.getId() == menu.getpId()){
                     list.add(menu);
                 }
             }

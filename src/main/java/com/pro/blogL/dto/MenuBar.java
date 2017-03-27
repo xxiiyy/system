@@ -8,32 +8,20 @@ import com.pro.blogL.entrty.Menu;
  */
 public class MenuBar extends Menu {
 
+    private boolean checked;
 
-    private Menu menu;
-
-    private boolean check;
-
-    public Menu getMenu() {
-        return menu;
+    public boolean isChecked() {
+        return checked;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
-    public boolean isCheck() {
-        return check;
-    }
-
-    public void setCheck(boolean check) {
-        this.check = check;
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     @Override
     public String toString() {
         return "MenuBar{" +
-                "menu=" + menu +
-                ", check=" + check +
+                "checked=" + checked +
                 '}';
     }
 }

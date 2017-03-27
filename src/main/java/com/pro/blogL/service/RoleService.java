@@ -14,4 +14,6 @@ public interface RoleService {
 
     int queryRoleIdByRoleType(String roleType);
 
+    int updateNodes(String[] ids,int roleId);
+
 }

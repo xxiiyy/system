@@ -1,16 +1,14 @@
 package com.pro.blogL.controller.test;
 
 
+import com.pro.blogL.dto.MenuBar;
 import com.pro.blogL.entrty.Menu;
 import com.pro.blogL.entrty.User;
 import com.pro.blogL.service.Impl.MenuServiceImpl;
 import com.pro.blogL.service.Impl.RoleServiceImpl;
 import com.pro.blogL.service.Impl.UserServiceImpl;
-import com.pro.blogL.service.RoleService;
 import com.pro.blogL.util.MenuUtils;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -53,8 +51,10 @@ public class Test {
 
     @org.junit.Test
     public void test1(){
-        User user = userService.queryUserByLoginName("root");
-        System.out.println(user);
+
+        String nodes = "z1,2,3,4,5,6,7,1001,10021";
+        String[] ids = nodes.substring(1,nodes.length()-1).split(",");
+        roleService.updateNodes(ids,2);
     }
 
 

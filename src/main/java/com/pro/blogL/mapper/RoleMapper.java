@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lhd on 2017/3/24.
@@ -26,4 +27,17 @@ public interface RoleMapper {
      * @return
      */
     int queryRoleIdByRoleType(@Param("roleType") String roleType);
+
+    /**
+     * 根据roleid来删除对应的rolemenu数据
+     * @param roleId
+     * @return
+     */
+    int deleteRoleMenuByRoleId(@Param("roleId") Integer roleId);
+
+    /**
+     * 插入rolemenu数据
+     * @return
+     */
+    int insertRoleMenu(Map<String,Object> map);
 }
