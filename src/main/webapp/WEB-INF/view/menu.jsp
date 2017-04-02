@@ -60,7 +60,7 @@
     <c:forEach items="${menus}" var="menu" varStatus="status">
         <c:if test="${menu.childMenus!=null}">
             <li class="parent ">
-                <a href="${menu.href}">
+                <a href="${menu.href}" target="mainFrame">
                     <span class="${menu.icon}"></span> ${menu.name}
                     <span data-toggle="collapse" href="#sub-item-${status.index}" class="icon pull-right">
                         <em class="glyphicon glyphicon-s glyphicon-plus"></em>
@@ -74,8 +74,8 @@
         </c:if>
         <c:if test="${menu.childMenus==null}">
             <li>
-                <a href="${menu.href}">
-                    <span class="${menu.icon}"></span> ${menu.name}
+                <a href="${menu.href}" target="mainFrame">
+                    <span class="${menu.icon}" ></span> ${menu.name}
                 </a>
             </li>
         </c:if>

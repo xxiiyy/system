@@ -26,21 +26,6 @@
 
 <body>
 
-<jsp:include page="../top.jsp"/>>
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    <form role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-    </form>
-    <ul class="nav menu">
-        <jsp:include page="../menu.jsp"/>
-        <li role="presentation" class="divider"></li>
-    </ul>
-    <div class="attribution">Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a>
-    </div>
-</div><!--/.sidebar-->
-
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
@@ -59,7 +44,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">userList information</div>
                 <div class="panel-body">
                     <table data-toggle="table" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"

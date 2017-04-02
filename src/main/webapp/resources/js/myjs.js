@@ -178,32 +178,3 @@ function initTree(roleType) {
     })
 };
 
-/**
- * 更新user
- */
-$(document).ready(function () {
-    $(".updateUser").click(function () {
-        var loginName = $(this).data('uid');
-        $("#loginName").val(loginName);
-        jQuery.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type: "POST",
-            url: "update/" + loginName,
-            //data : JSON.stringify(loginName),
-            success: function (reslut, tst, jqXHR) {
-                $("#loginName").val(reslut.loginName);
-                $("#nickName").val(reslut.nickName);
-                if (reslut.sex == 1) {
-                    $("#sex").attr("checked", "checked");
-                } else {
-                    $("#sex1").attr("checked", "checked");
-                }
-                $("#roleType").val(reslut.roleType);
-                //$("#sex").val(reslut.sex);
-            }
-        });
-    })
-})

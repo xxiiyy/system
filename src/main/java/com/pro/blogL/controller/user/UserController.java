@@ -39,8 +39,6 @@ public class UserController extends BaseController{
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);
         model.addAttribute("userList",users);
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "user/userList";
     }
 
@@ -61,8 +59,6 @@ public class UserController extends BaseController{
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);
         model.addAttribute("userList",users);
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "user/userList";
     }
 
@@ -76,8 +72,6 @@ public class UserController extends BaseController{
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);
         model.addAttribute("userList",users);
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "user/userList";
     }
 
@@ -92,8 +86,6 @@ public class UserController extends BaseController{
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);
         model.addAttribute("userList",users);
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "user/userList";
     }
 

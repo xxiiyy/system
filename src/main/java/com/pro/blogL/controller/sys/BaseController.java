@@ -2,6 +2,7 @@ package com.pro.blogL.controller.sys;
 
 import com.pro.blogL.entrty.Menu;
 import com.pro.blogL.entrty.User;
+import com.pro.blogL.exception.UserException;
 import com.pro.blogL.service.Impl.MenuServiceImpl;
 import com.pro.blogL.service.Impl.RoleServiceImpl;
 import com.pro.blogL.service.Impl.UserServiceImpl;
@@ -13,14 +14,20 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+import sun.beans.editors.DoubleEditor;
+import sun.beans.editors.FloatEditor;
+import sun.beans.editors.IntegerEditor;
+import sun.beans.editors.LongEditor;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -28,7 +35,7 @@ import java.util.*;
  * @author lhd
  */
 @Controller
-public class BaseController {
+public class BaseController{
 
     @Autowired
     private UserServiceImpl userService;
@@ -39,8 +46,6 @@ public class BaseController {
     @Resource
     private MenuServiceImpl menuService;
 
-
-
     /**
      * 测试数据
      * @return
@@ -48,9 +53,37 @@ public class BaseController {
     @RequestMapping(value = "/test")
     @ResponseBody
     public User test(){
-        User user = userService.queryUserByLoginName("root");
+        User user = userService.queryUserByLoginName("admin");
         return user;
     }
+
+    /**
+     * 表单数据绑定
+     * @param binder
+     */
+   /* @InitBinder
+    protected void initBinder(WebDataBinder binder){
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(
+                new SimpleDateFormat("yyyy-MM-dd"),true));
+        binder.registerCustomEditor(int.class,
+                new CustomNumberEditor(int.class,true));
+        binder.registerCustomEditor(int.class,new IntegerEditor());
+        binder.registerCustomEditor(long.class,
+                new CustomNumberEditor(long.class,true));
+        binder.registerCustomEditor(long.class,new LongEditor());
+        binder.registerCustomEditor(double.class,new DoubleEditor());
+        binder.registerCustomEditor(float.class,new FloatEditor());
+    }*/
+
+   /* @RequestMapping(value = "/error")
+    @ExceptionHandler
+    public void error(){
+        try {
+            throw new UserException("cuowu");
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     /**
      * 首路径
@@ -63,7 +96,6 @@ public class BaseController {
         model.addAttribute("user", getNowUser());
         return "index";
     }
-
 
 
     /**
@@ -94,7 +126,6 @@ public class BaseController {
      */
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String register(Model model){
-        model.addAttribute("user",getNowUser());
         return "register";
     }
 
@@ -104,7 +135,6 @@ public class BaseController {
      */
     @RequestMapping(value = "/forgot",method = RequestMethod.GET)
     public String forgot(Model model){
-        model.addAttribute("user",getNowUser());
         return "forgot";
     }
 
@@ -114,7 +144,6 @@ public class BaseController {
      */
     @RequestMapping(value = "/logout",method = {RequestMethod.GET,RequestMethod.POST})
     public String logout(Model model){
-        model.addAttribute("user",getNowUser());
         return "login";
     }
 
@@ -160,8 +189,6 @@ public class BaseController {
      */
     @RequestMapping(value = "tables")
     public String tables(Model model){
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "tables";
     }
 
@@ -172,8 +199,6 @@ public class BaseController {
      */
     @RequestMapping(value = "charts")
     public String charts(Model model){
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "charts";
     }
 
@@ -184,9 +209,18 @@ public class BaseController {
      */
     @RequestMapping(value = "forms")
     public String forms(Model model){
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "forms";
+    }
+
+
+    /**
+     * 转到dashboard页面
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "dashboard")
+    public String dashboard(Model model){
+        return "dashboard";
     }
 
     /**
@@ -196,8 +230,6 @@ public class BaseController {
      */
     @RequestMapping(value = "panels")
     public String panels(Model model){
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "panels";
     }
     /**
@@ -207,8 +239,6 @@ public class BaseController {
      */
     @RequestMapping(value = "widgets")
     public String widgets(Model model){
-        model.addAttribute("user",getNowUser());
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "widgets";
     }
 

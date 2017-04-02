@@ -38,12 +38,8 @@ public class RoleController extends BaseController{
 
     @RequestMapping(value = "/roleList")
     public String userList(Model model){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);
-        model.addAttribute("user",user);
-        model.addAttribute("menus",getMenus(user.getLoginName()));
         return "user/roleList";
     }
 
@@ -60,7 +56,6 @@ public class RoleController extends BaseController{
                 }
             }
         }
-        System.out.println(menuBars);
         return menuBars;
     }
 

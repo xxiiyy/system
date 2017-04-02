@@ -2,13 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lumino - Tables</title>
+    <title>userList</title>
 
     <link href="/blogSystem/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="/blogSystem/resources/css/datepicker3.css" rel="stylesheet">
@@ -21,26 +21,12 @@
     <![endif]-->
 </head>
 <body>
-<jsp:include page="../top.jsp"/>
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    <form role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-    </form>
-    <ul class="nav menu">
-        <jsp:include page="../menu.jsp"/>
-        <li role="presentation" class="divider"></li>
-    </ul>
-    <div class="attribution">Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a>
-    </div>
-</div><!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
             <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">user</li>
+            <li class="active">userList</li>
         </ol>
     </div><!--/.row-->
 
@@ -52,7 +38,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">userList information</div>
                 <div class="panel-heading">
                     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
                         add user
@@ -84,10 +69,10 @@
                                 <td data-field="operate" data-sortable="true">
                                     <a href="javascript:void(0);" class="updateUser" data-toggle="modal"
                                        data-target="#myModal" data-uid="${user.loginName}">
-                                        <span class="glyphicon glyphicon-pencil">&nbsp;修改&nbsp;&nbsp;</span>
+                                        <span class="glyphicon glyphicon-pencil">修改</span>
                                     </a>
                                     <a href="/blogSystem/user/deleteUser/${user.loginName}" class="deleteUser" data-did="${user.id}">
-                                        <span class="glyphicon glyphicon-trash">&nbsp;删除</span>
+                                        <span class="glyphicon glyphicon-trash">删除</span>
                                     </a>
                                 </td>
                             </tr>
@@ -174,7 +159,7 @@
                 <h4 class="modal-title" id="myModalLabel">update user information</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" id="/blogSystem/user/updateForm" action="updateSubmit">
+                <form class="form-horizontal" role="form" id="updateForm" action="/blogSystem/user/updateSubmit">
                     <div class="form-group">
                         <label for="loginName" class="col-sm-3 control-label">login name</label>
                         <div class="col-sm-8">
@@ -193,7 +178,7 @@
                         <label for="sex" class="col-sm-3 control-label">sex</label>
                         <div class="col-sm-8">
                             <label>
-                                <input type="radio" name="sex" id="sex" value="1" checked> male&nbsp&nbsp
+                                <input type="radio" name="sex" id="sex" value="1" checked> male&nbsp;&nbsp;
                             </label>
                             <label>
                                 <input type="radio" name="sex" id="sex1" value="0">female
@@ -227,8 +212,38 @@
 <script src="/blogSystem/resources/js/easypiechart-data.js"></script>
 <script src="/blogSystem/resources/js/bootstrap-datepicker.js"></script>
 <script src="/blogSystem/resources/js/bootstrap-table.js"></script>
-<script type="text/javascript"></script>
 <script>
+
+    /**
+     * 更新user
+     */
+    $(document).ready(function () {
+        $(".updateUser").click(function () {
+            var loginName = $(this).data('uid');
+            $("#loginName").val(loginName);
+            jQuery.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                url: "update/" + loginName,
+                //data : JSON.stringify(loginName),
+                success: function (reslut, tst, jqXHR) {
+                    $("#loginName").val(reslut.loginName);
+                    $("#nickName").val(reslut.nickName);
+                    if (reslut.sex == 1) {
+                        $("#sex").attr("checked", "checked");
+                    } else {
+                        $("#sex1").attr("checked", "checked");
+                    }
+                    $("#roleType").val(reslut.roleType);
+                    //$("#sex").val(reslut.sex);
+                }
+            });
+        })
+    })
+
     !function ($) {
         $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
             $(this).find('em:first').toggleClass("glyphicon-minus");

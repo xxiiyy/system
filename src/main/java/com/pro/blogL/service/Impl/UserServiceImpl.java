@@ -1,6 +1,7 @@
 package com.pro.blogL.service.Impl;
 
 import com.pro.blogL.entrty.User;
+import com.pro.blogL.exception.UserException;
 import com.pro.blogL.mapper.UserMapper;
 import com.pro.blogL.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,5 @@ public class UserServiceImpl implements UserService{
     public int deleteUserByLoginName(String loginName) {
         return userMapper.deleteUserByLoginName(loginName);
     }
+
 }

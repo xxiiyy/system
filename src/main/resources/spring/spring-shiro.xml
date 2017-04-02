@@ -30,6 +30,7 @@
 				/registerMethod = anon
 				/logout = logout
 
+				
 				/resources/fonts/* = anon
 				/resources/tables/* = anon
 				/resources/css/* = anon

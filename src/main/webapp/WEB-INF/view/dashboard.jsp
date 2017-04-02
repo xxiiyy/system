@@ -17,38 +17,6 @@
 </head>
 
 <body>
-	<jsp:include page="top.jsp"/>
-
-	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-		<form role="search">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
-			</div>
-		</form>
-		<ul class="nav menu">
-			<jsp:include page="menu.jsp" />
-			<li role="presentation" class="divider"></li>
-		</ul>
-	</div><!--/.sidebar-->
-
-	<div class="right-iframe">
-		<iframe src="wc" frameborder="0" name="mainFrame" scrolling="auto"
-				marginheight="0" marginwidth="0" id="iframepage"
-				onLoad="iFrameHeight()" width="100%" height="800px">
-		</iframe>
-		<script type="text/javascript" language="javascript">
-            function iFrameHeight(){
-                var ifm= document.getElementById('iframepage');
-                var subWeb = document.frames ? document.frames['iframepage'].document : ifm.contentDocument;
-                if(ifm != null && subWeb != null) {
-                    ifm.height = subWeb.body.scrollHeight;
-                    ifm.width = subWeb.body.scrollWidth;
-                }
-            }
-		</script>
-	</div>
-
-	<!-- begin-->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">

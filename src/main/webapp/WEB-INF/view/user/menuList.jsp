@@ -9,7 +9,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lumino - Tables</title>
-
     <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="../resources/css/datepicker3.css" rel="stylesheet">
     <link href="../resources/css/bootstrap-table.css" rel="stylesheet">
@@ -19,24 +18,8 @@
     <script src="../resources/js/html5shiv.js"></script>
     <script src="../resources/js/respond.min.js"></script>
     <![endif]-->
-
 </head>
-
 <body>
-<jsp:include page="../top.jsp"/>
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    <form role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-    </form>
-    <ul class="nav menu">
-        <jsp:include page="../menu.jsp"/>
-        <li role="presentation" class="divider"></li>
-    </ul>
-    <div class="attribution">Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a>
-    </div>
-</div><!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
@@ -56,7 +39,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">userList information</div>
                 <div class="panel-body">
                     <table data-toggle="table" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
@@ -75,7 +57,6 @@
                         </thead>
                         <tbody>
                         <c:forEach var="menu" varStatus="status" items="${menuList}">
-
                             <tr>
                                 <td data-field="status" data-sortable="true">${status.index+1}</td>
                                 <td data-field="nickName" data-sortable="true">${menu.id}</td>
@@ -84,16 +65,14 @@
                                 <td data-field="price" data-sortable="true">${menu.href}</td>
                                 <td data-field="price" data-sortable="true">${menu.icon}</td>
                                 <td data-field="operate" data-sortable="true">
-                                    <a href="javascript:void(0);" date-uid="${user.id}"><span class="glyphicon glyphicon-pencil">&nbsp;修改&nbsp;&nbsp;</span></a>
+                                    <a href="javascript:void(0);" date-uid="${user.id}"><span class="glyphicon glyphicon-pencil">修改</span></a>
                                     <a href="javascript:void(0);" data-did="${user.id}">
-                                        <span class="glyphicon glyphicon-trash">&nbsp;删除</span>
+                                        <span class="glyphicon glyphicon-trash">删除</span>
                                     </a>
                                 </td>
                             </tr>
-
                         </c:forEach>
                         </tbody>
-
                     </table>
                 </div>
             </div>

@@ -30,9 +30,7 @@ public class MenuController extends BaseController{
     @RequestMapping(value = "/menuList")
     public String userList(Model model){
         List<Menu> menuList = menuService.queryAllMenu();
-        model.addAttribute("user",getNowUser());
         model.addAttribute("menuList",menuList);
-        model.addAttribute("menus",getMenus(getNowUser().getLoginName()));
         return "user/menuList";
     }
 

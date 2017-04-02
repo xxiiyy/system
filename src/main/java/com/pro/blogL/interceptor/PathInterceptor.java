@@ -22,12 +22,16 @@ public class PathInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object o) throws Exception {
         String url = request.getRequestURI().toString();
-
-
-
+        if(urlAnon!=null&&urlAnon.length>0){
+            for (String urlanon:urlAnon){
+                if(url.contains(urlanon)){
+                    return true;
+                }
+            }
+        }
         Subject subject = SecurityUtils.getSubject();
         User user  = (User)subject.getPrincipal();
-       if(user == null){
+        if(user == null){
             request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request,response);
             return false;
         }
