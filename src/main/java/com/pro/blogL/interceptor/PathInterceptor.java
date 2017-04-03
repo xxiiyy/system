@@ -35,7 +35,7 @@ public class PathInterceptor implements HandlerInterceptor {
             request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request,response);
             return false;
         }
-        if(url.equals("/test")){
+        if(url.contains("/test")){
             return false;
         }
         return true;
