@@ -71,7 +71,8 @@
                                        data-target="#myModal" data-uid="${user.loginName}">
                                         <span class="glyphicon glyphicon-pencil">修改</span>
                                     </a>
-                                    <a href="/blogSystem/user/deleteUser/${user.loginName}" class="deleteUser" data-did="${user.id}">
+                                    <a href="/blogSystem/user/deleteUser/${user.loginName}"
+                                       class="deleteUser" data-did="${user.id}">
                                         <span class="glyphicon glyphicon-trash">删除</span>
                                     </a>
                                 </td>
@@ -214,9 +215,17 @@
 <script src="/blogSystem/resources/js/bootstrap-table.js"></script>
 <script>
 
-    /**
-     * 更新user
-     */
+    $(document).ready(function () {
+        $('.deleteUser').click(function () {
+            if(window.confirm('你确定要删除？')){
+                return true;
+            }else{
+                return false;
+            }
+        })
+    })
+
+    //更新user
     $(document).ready(function () {
         $(".updateUser").click(function () {
             var loginName = $(this).data('uid');

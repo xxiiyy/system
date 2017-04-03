@@ -20,4 +20,10 @@ public interface MenuService {
 
     Menu queryMenuByMenuId(Integer menuId);
 
+    Menu queryMenuByMenuIdAShow(Integer menuId);
+
+    Integer insertMenu(Menu menu);
+
+    Integer updateMenu(Menu menu);
+
 }

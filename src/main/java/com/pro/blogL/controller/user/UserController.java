@@ -34,7 +34,7 @@ public class UserController extends BaseController{
     public String userList(Model model){
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("startNo",0);
-        map.put("pageSize",100);
+        map.put("pageSize",1000);
         List<User> users = userService.queryAllUser(map);
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);
@@ -54,7 +54,7 @@ public class UserController extends BaseController{
         userService.updateUserByLoginName(user);
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("startNo",0);
-        map.put("pageSize",100);
+        map.put("pageSize",1000);
         List<User> users = userService.queryAllUser(map);
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);
@@ -67,7 +67,7 @@ public class UserController extends BaseController{
         userService.deleteUserByLoginName(loginName);
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("startNo",0);
-        map.put("pageSize",100);
+        map.put("pageSize",1000);
         List<User> users = userService.queryAllUser(map);
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);
@@ -81,7 +81,7 @@ public class UserController extends BaseController{
         userService.insertUser(user);
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("startNo",0);
-        map.put("pageSize",100);
+        map.put("pageSize",1000);
         List<User> users = userService.queryAllUser(map);
         List<Role> roleList = roleService.queryAllRole();
         model.addAttribute("roleList",roleList);

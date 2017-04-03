@@ -116,7 +116,6 @@ public class BaseController{
                 model.addAttribute("errorMsg", "未知异常");
             }
         }
-        model.addAttribute("user",getNowUser());
         return "login";
     }
 
@@ -125,7 +124,7 @@ public class BaseController{
      * @return
      */
     @RequestMapping(value = "/register",method = RequestMethod.GET)
-    public String register(Model model){
+    public String register(){
         return "register";
     }
 
@@ -134,7 +133,7 @@ public class BaseController{
      * @return
      */
     @RequestMapping(value = "/forgot",method = RequestMethod.GET)
-    public String forgot(Model model){
+    public String forgot(){
         return "forgot";
     }
 
@@ -143,7 +142,7 @@ public class BaseController{
      * @return
      */
     @RequestMapping(value = "/logout",method = {RequestMethod.GET,RequestMethod.POST})
-    public String logout(Model model){
+    public String logout(){
         return "login";
     }
 
@@ -154,7 +153,6 @@ public class BaseController{
      */
     @RequestMapping(value = "/registerMethod")
     public String registerMethod(Model model, User user){
-
         model.addAttribute("user",getNowUser());
         user = insert(user,"customer");
         userService.insertUser(user);
@@ -171,6 +169,14 @@ public class BaseController{
         return user;
     }
 
+    /*@RequestMapping(value = "/error")
+    public String error()throws Exception{
+        if(1 == 1) {
+            throw new UserException("aa");
+        }
+        return "index";
+    }*/
+
     /**
      * 进入首页
      * @return
@@ -184,61 +190,55 @@ public class BaseController{
 
     /**
      * 转到tables页面
-     * @param model
      * @return
      */
     @RequestMapping(value = "tables")
-    public String tables(Model model){
+    public String tables(){
         return "tables";
     }
 
     /**
      * 转到charts页面
-     * @param model
      * @return
      */
     @RequestMapping(value = "charts")
-    public String charts(Model model){
+    public String charts(){
         return "charts";
     }
 
     /**
      * 转到forms页面
-     * @param model
      * @return
      */
     @RequestMapping(value = "forms")
-    public String forms(Model model){
+    public String forms(){
         return "forms";
     }
 
 
     /**
      * 转到dashboard页面
-     * @param model
      * @return
      */
     @RequestMapping(value = "dashboard")
-    public String dashboard(Model model){
+    public String dashboard(){
         return "dashboard";
     }
 
     /**
      * 转到panels页面
-     * @param model
      * @return
      */
     @RequestMapping(value = "panels")
-    public String panels(Model model){
+    public String panels(){
         return "panels";
     }
     /**
      * 转到widgets页面
-     * @param model
      * @return
      */
     @RequestMapping(value = "widgets")
-    public String widgets(Model model){
+    public String widgets(){
         return "widgets";
     }
 
@@ -254,7 +254,7 @@ public class BaseController{
         List<Integer> menuId = menuService.queryMenusByRoleType(roleId);
         List<Menu> menus = new ArrayList<Menu>();
         for (Integer id : menuId){
-            Menu menu = menuService.queryMenuByMenuId(id);
+            Menu menu = menuService.queryMenuByMenuIdAShow(id);
             if(menu!=null) menus.add(menu);
         }
         List<Menu> pMenus = MenuUtils.init(menus);

@@ -3,6 +3,7 @@ package com.pro.blogL.mapper;
 import com.pro.blogL.dto.MenuBar;
 import com.pro.blogL.entrty.Menu;
 import org.apache.ibatis.annotations.Param;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +41,25 @@ public interface MenuMapper {
      * @return
      */
     Menu queryMenuByMenuId(@Param("menuId") Integer menuId);
+
+    /**
+     * 可以获取到数据menu is_show为false的数据
+     * @param menuId
+     * @return
+     */
+    Menu queryMenuByMenuIdAShow(@Param("menuId") Integer menuId);
+
+    /**
+     * 添加menu
+     * @param menu
+     * @return
+     */
+    Integer insertMenu(Menu menu);
+
+    /**
+     * 更新整个menu
+     * @param menu
+     * @return
+     */
+    Integer updateMenu(Menu menu);
 }

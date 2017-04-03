@@ -17,6 +17,7 @@ import java.util.List;
 @Service
 public class MenuServiceImpl implements MenuService{
 
+
     @Resource
     private MenuMapper menuMapper;
 
@@ -35,5 +36,17 @@ public class MenuServiceImpl implements MenuService{
 
     public Menu queryMenuByMenuId(Integer menuId) {
         return menuMapper.queryMenuByMenuId(menuId);
+    }
+
+    public Menu queryMenuByMenuIdAShow(Integer menuId) {
+        return menuMapper.queryMenuByMenuIdAShow(menuId);
+    }
+
+    public Integer updateMenu(Menu menu) {
+        return menuMapper.updateMenu(menu);
+    }
+
+    public Integer insertMenu(Menu menu) {
+        return menuMapper.insertMenu(menu);
     }
 }

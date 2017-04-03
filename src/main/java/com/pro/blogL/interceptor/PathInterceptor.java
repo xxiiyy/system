@@ -17,7 +17,7 @@ public class PathInterceptor implements HandlerInterceptor {
 
 
     //设置不需要拦截的路径
-    private String[] urlAnon;
+    private String[] urlAnon = {};
 
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object o) throws Exception {

@@ -33,7 +33,6 @@
     <select id="queryAllMenu"  resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/>
         from b_menu
-        where is_show = 1;
     </select>
 
     <!-- 查询全部的menuBar对象 -->
@@ -50,10 +49,30 @@
         where role_id = #{roleId};
     </select>
 
+    <select id="queryMenuByMenuIdAShow" resultMap="BaseResultMap" parameterType="int">
+        select *
+        from b_menu
+        where menu_id = #{menuId} and is_show = 1;
+    </select>
+
     <select id="queryMenuByMenuId" resultMap="BaseResultMap" parameterType="int">
         select *
         from b_menu
         where menu_id = #{menuId};
     </select>
+
+    <insert id="insertMenu" parameterType="Menu">
+        insert
+        into b_menu(menu_id,pid,name,href,icon,create_time,is_show)
+        values(#{id},#{pId},#{name},#{href},#{icon},#{createTime},#{show});
+    </insert>
+
+    <update id="updateMenu" parameterType="Menu">
+        update b_menu
+        set pid = #{pId,jdbcType=INTEGER},
+            name = #{name,jdbcType=VARCHAR},
+            is_show = #{show,jdbcType=INTEGER}
+        where menu_id = #{id};
+    </update>
 
 </mapper>

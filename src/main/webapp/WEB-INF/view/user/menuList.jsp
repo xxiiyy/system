@@ -56,7 +56,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="menu" varStatus="status" items="${menuList}">
+                        <c:forEach var="menu" varStatus="status" items="${rm.list}">
                             <tr>
                                 <td data-field="status" data-sortable="true">${status.index+1}</td>
                                 <td data-field="nickName" data-sortable="true">${menu.id}</td>
@@ -65,7 +65,10 @@
                                 <td data-field="price" data-sortable="true">${menu.href}</td>
                                 <td data-field="price" data-sortable="true">${menu.icon}</td>
                                 <td data-field="operate" data-sortable="true">
-                                    <a href="javascript:void(0);" date-uid="${user.id}"><span class="glyphicon glyphicon-pencil">修改</span></a>
+                                    <a href="javascript:void(0);" class="updateMenu" data-toggle="modal"
+                                       data-target="#myModal" data-uid="${menu.id}">
+                                        <span class="glyphicon glyphicon-pencil">修改</span>
+                                    </a>
                                     <a href="javascript:void(0);" data-did="${user.id}">
                                         <span class="glyphicon glyphicon-trash">删除</span>
                                     </a>
@@ -78,9 +81,60 @@
             </div>
         </div>
     </div><!--/.row-->
-
-
 </div><!--/.main-->
+
+
+<!-- menu更新 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">menu</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="updateForm" action="/blogSystem/menu/menuUpdate">
+                    <div class="form-group">
+                        <label for="id" class="col-sm-3 control-label">menu id</label>
+                        <div class="col-sm-8">
+                            <input type="text" required name="id" class="form-control" id="id"
+                                   readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pId" class="col-sm-3 control-label">parent id</label>
+                        <div class="col-sm-8">
+                            <input type="text" required name="pId" class="form-control" id="pId"
+                                   placeholder="父菜单">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">menu name</label>
+                        <div class="col-sm-8">
+                            <input type="text" required name="name" class="form-control" id="name"
+                                   placeholder="菜单名字">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="show" class="col-sm-3 control-label">是否可用</label>
+                        <div class="col-sm-8">
+                            <label>
+                                <input type="radio" id="show" name="show" value="1" checked> 可用&nbsp&nbsp
+                            </label>
+                            <label>
+                                <input type="radio" id="show1" name="show" value="0">不可用
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" id="submitUpdate" class="btn btn-primary">提交更改</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 
 <script src="../resources/js/jquery-1.11.1.min.js"></script>
 <script src="../resources/js/bootstrap.min.js"></script>
@@ -91,6 +145,38 @@
 <script src="../resources/js/bootstrap-datepicker.js"></script>
 <script src="../resources/js/bootstrap-table.js"></script>
 <script>
+
+
+    $(document).ready(function () {
+        $(".updateMenu").click(function () {
+            var menuId = $(this).data('uid');
+            $("#id").val(menuId);
+            jQuery.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                url: "menuUpdateInfo/" + menuId,
+                //data : JSON.stringify(loginName),
+                success: function (reslut, tst, jqXHR) {
+                    if(reslut.result == true){
+                        $('#pId').val(reslut.object.pId);
+                        $('#name').val(reslut.object.name);
+                        if (reslut.object.show == true) {
+                            $('#show').attr("checked", "checked");
+                        } else {
+                            $('#show1').attr("checked", "checked");
+                        }
+                    }
+                },
+                error:function (result) {
+
+                }
+            });
+        })
+    })
+
     !function ($) {
         $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
             $(this).find('em:first').toggleClass("glyphicon-minus");

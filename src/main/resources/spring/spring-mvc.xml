@@ -38,9 +38,8 @@
     <!-- 拦截器 -->
     <!--<mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/test"/>
+            <mvc:mapping path="/**"/>
             <bean class="com.pro.blogL.interceptor.PathInterceptor">
-                &lt;!&ndash; 配置不需要过滤的路径&ndash;&gt;
                 <property name="urlAnon">
                     <list>
                         <value>/resources</value>
